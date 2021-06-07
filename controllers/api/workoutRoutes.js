@@ -1,19 +1,27 @@
-const db = require('../../models')
+const db = require("../../models");
 
-const router = require('express').Router()
+const router = require("express").Router();
 
-// /api/workouts/
-router.get('/', (req, res) => {
+// GET -- /api/workouts/
+router.get("/", (req, res) => {
   db.Workout.find({})
-    .then(dbWorkout => {
-      console.log(dbWorkout)
-      res.json(dbWorkout)
+    .then((dbWorkout) => {
+      console.log(dbWorkout);
+      res.json(dbWorkout);
     })
-    .catch(
-      err => {
-        res.json(err)
-      }
-    )
-})
+    .catch((err) => {
+      res.json(err);
+    });
+});
 
-module.exports = router
+// CREATE -- /api/workouts
+router.post("/", (req, res) => {
+  db.Workout.create(req.body)
+    .then((dbWorkout) => {
+      console.log(dbWorkout);
+      res.json(dbWorkout);
+    })
+    .catch((err) => res.json(err));
+});
+
+module.exports = router;
