@@ -20,8 +20,20 @@ const WorkoutSchema = new Schema({
       sets: Number
     }
   ]
+}/* , {
+  toObject: {
+    virtuals: true
+  },
+  toJSON: {
+    virtuals: true
+  }
 })
 
+WorkoutSchema.virtual('totalDuration').get(function () {
+  return this.exercises.reduce((acc, curr) => {
+    return curr.duration + acc
+  }, 0)
+} */)
 const Workout = mongoose.model('Workout', WorkoutSchema)
 
 module.exports = Workout
