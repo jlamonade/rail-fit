@@ -15,11 +15,11 @@ app.use(logger('dev'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-// routes
-app.use(routes)
-
 // static public
 app.use(express.static('public'))
+
+// routes
+app.use(routes)
 
 // db connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
