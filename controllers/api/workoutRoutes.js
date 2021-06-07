@@ -16,7 +16,20 @@ router.get("/", (req, res) => {
 
 // CREATE -- /api/workouts
 router.post("/", (req, res) => {
-  db.Workout.create(req.body)
+  db.Workout.create({ day: Date.now() })
+    .then((dbWorkout) => {
+      console.log(dbWorkout);
+      res.json(dbWorkout);
+    })
+    .catch((err) => res.json(err));
+});
+
+// UPDATE -- /api/workouts/:id
+router.put("/:id", (req, res) => {
+  db.Workout.updateOne(
+    { _id: req.params.id },
+    { $push: { exercises: req.body } }
+  )
     .then((dbWorkout) => {
       console.log(dbWorkout);
       res.json(dbWorkout);

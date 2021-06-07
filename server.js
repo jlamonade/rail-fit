@@ -2,6 +2,7 @@ const express = require('express')
 const logger = require('morgan')
 const mongoose = require('mongoose')
 const routes = require('./controllers')
+const path = require('path')
 require('dotenv').config()
 
 // models
@@ -16,7 +17,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 // static public
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 // routes
 app.use(routes)
