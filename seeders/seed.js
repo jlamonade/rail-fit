@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
-const db = require('../models');
+const mongoose = require('mongoose')
+const db = require('../models')
 
 mongoose.connect('mongodb://localhost/workout', {
   useNewUrlParser: true,
   useFindAndModify: false,
-  useUnifiedTopology: true,
-});
+  useUnifiedTopology: true
+})
 
 const workoutSeed = [
   {
@@ -17,9 +17,9 @@ const workoutSeed = [
         duration: 20,
         weight: 100,
         reps: 10,
-        sets: 4,
-      },
-    ],
+        sets: 4
+      }
+    ]
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 8)),
@@ -30,9 +30,9 @@ const workoutSeed = [
         duration: 20,
         weight: 300,
         reps: 10,
-        sets: 4,
-      },
-    ],
+        sets: 4
+      }
+    ]
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 7)),
@@ -43,9 +43,9 @@ const workoutSeed = [
         duration: 25,
         weight: 185,
         reps: 8,
-        sets: 4,
-      },
-    ],
+        sets: 4
+      }
+    ]
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 6)),
@@ -54,9 +54,9 @@ const workoutSeed = [
         type: 'cardio',
         name: 'Running',
         duration: 25,
-        distance: 4,
-      },
-    ],
+        distance: 4
+      }
+    ]
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 5)),
@@ -67,9 +67,9 @@ const workoutSeed = [
         duration: 20,
         weight: 285,
         reps: 10,
-        sets: 4,
-      },
-    ],
+        sets: 4
+      }
+    ]
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 4)),
@@ -80,9 +80,9 @@ const workoutSeed = [
         duration: 20,
         weight: 300,
         reps: 10,
-        sets: 4,
-      },
-    ],
+        sets: 4
+      }
+    ]
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 3)),
@@ -93,9 +93,9 @@ const workoutSeed = [
         duration: 30,
         weight: 300,
         reps: 10,
-        sets: 4,
-      },
-    ],
+        sets: 4
+      }
+    ]
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 2)),
@@ -106,9 +106,9 @@ const workoutSeed = [
         duration: 20,
         weight: 300,
         reps: 10,
-        sets: 4,
-      },
-    ],
+        sets: 4
+      }
+    ]
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 1)),
@@ -119,19 +119,19 @@ const workoutSeed = [
         duration: 20,
         weight: 300,
         reps: 10,
-        sets: 4,
-      },
-    ],
-  },
-];
+        sets: 4
+      }
+    ]
+  }
+]
 
 db.Workout.deleteMany({})
   .then(() => db.Workout.collection.insertMany(workoutSeed))
   .then((data) => {
-    console.log(data.result.n + ' records inserted!');
-    process.exit(0);
+    console.log(data.result.n + ' records inserted!')
+    process.exit(0)
   })
   .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+    console.error(err)
+    process.exit(1)
+  })
