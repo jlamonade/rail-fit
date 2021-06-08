@@ -3,22 +3,46 @@ const db = require('../../models')
 const router = require('express').Router()
 
 // GET -- /api/workouts/
-/*
-totalDuration: {
-        $sum: '$exercises.duration'
-      }
-*/
 router.get('/', (req, res) => {
-  db.Workout.aggregate([{
-    $set: {
-      totalDuration: {
-        $sum: '$exercises.duration'
+  db.Workout.aggregate([
+    {
+      $set: {
+        totalDuration: {
+          $sum: '$exercises.duration'
+        }
       }
     }
-  }]).then((dbWorkout) => {
-    console.log(dbWorkout.totalDuration)
-    res.json(dbWorkout)
-  })
+  ])
+    .then((dbWorkout) => {
+      res.json(dbWorkout)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
+})
+
+// GET workouts in range - /api/workouts/range
+router.get('/range', (req, res) => {
+  db.Workout.aggregate([
+    {
+      $set: {
+        totalDuration: {
+          $sum: '$exercises.duration'
+        }
+      }
+    },
+    {
+      $sort: { day: -1 }
+    },
+    { $limit: 7 },
+    {
+      $sort: { day: 1 }
+    }
+  ])
+    .then((dbWorkout) => {
+      console.log(dbWorkout)
+      res.json(dbWorkout)
+    })
     .catch((err) => {
       res.json(err)
     })
@@ -39,10 +63,11 @@ router.put('/:id', (req, res) => {
   db.Workout.updateOne(
     { _id: req.params.id },
     { $push: { exercises: req.body } }
-  ).then((dbWorkout) => {
-    console.log(dbWorkout)
-    res.json(dbWorkout)
-  })
+  )
+    .then((dbWorkout) => {
+      console.log(dbWorkout)
+      res.json(dbWorkout)
+    })
     .catch((err) => res.json(err))
 })
 
