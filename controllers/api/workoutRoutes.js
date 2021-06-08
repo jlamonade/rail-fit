@@ -34,14 +34,10 @@ router.get('/range', (req, res) => {
     {
       $sort: { day: -1 }
     },
-    { $limit: 7 },
-    {
-      $sort: { day: 1 }
-    }
+    { $limit: 7 }
   ])
     .then((dbWorkout) => {
-      console.log(dbWorkout)
-      res.json(dbWorkout)
+      res.json(dbWorkout.reverse())
     })
     .catch((err) => {
       res.json(err)
