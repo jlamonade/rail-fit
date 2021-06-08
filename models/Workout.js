@@ -9,7 +9,7 @@ const WorkoutSchema = new Schema({
   },
   exercises: [
     {
-      type: {
+      type: { // needs to be specified type string or mongoose thinks the entire object is a string
         type: String
       },
       name: String,
