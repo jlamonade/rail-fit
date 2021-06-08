@@ -35,6 +35,3 @@ mongoose
       console.log(`App listening on port ${PORT}`)
     })
   )
-
-// create collections
-// mjIJmjCECmTpdXte
