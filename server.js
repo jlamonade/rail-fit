@@ -5,9 +5,6 @@ const routes = require('./controllers')
 const path = require('path')
 require('dotenv').config()
 
-// models
-// const db = require('./models')
-
 const app = express()
 const PORT = process.env.PORT || 3001
 
@@ -35,6 +32,3 @@ mongoose
       console.log(`App listening on port ${PORT}`)
     })
   )
-
-// create collections
-// mjIJmjCECmTpdXte
