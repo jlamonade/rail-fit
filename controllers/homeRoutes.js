@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const path = require('path')
 
+// routes serve the html files for stats, exercise, and index pages
+
 router.get('/stats', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/stats.html'))
 })
