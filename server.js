@@ -23,11 +23,18 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(routes)
 
 // db connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`)
-}))
+mongoose
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  })
+  .then(
+    app.listen(PORT, () => {
+      console.log(`App listening on port ${PORT}`)
+    })
+  )
 
 // create collections
+// mjIJmjCECmTpdXte
